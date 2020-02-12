@@ -30,7 +30,56 @@ class _RegisterState extends State<Register> {
       ),
     );
   }
+  
 
+// Username
+
+    Widget userForm() {
+    Color color = Colors.green;
+    Color coloruser = Colors.orange;
+    return TextField(
+      decoration: InputDecoration(
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: color),
+        ),
+        helperStyle: TextStyle(color: color),
+        helperText: 'Type Your Username in Blank',
+        labelStyle: TextStyle(color: color),
+        labelText: 'Username:',
+        icon: Icon(
+          Icons.supervised_user_circle,
+          size: 36.0,
+          color: coloruser,
+        ),
+      ),
+    );
+  }
+
+// Password
+
+
+   Widget password() {
+    Color color = Colors.green;
+    return TextField(
+      decoration: InputDecoration(
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: color),
+        ),
+        helperStyle: TextStyle(color: color),
+        helperText: 'Type Your Password in Blank',
+        labelStyle: TextStyle(color: color),
+        labelText: 'Password:',
+        icon: Icon(
+          Icons.vpn_key,
+          size: 36.0,
+          color: color,
+        ),
+      ),
+      // obscureText: true,
+    );
+  }
+  
+  
   Widget registerButton() {
     return IconButton(
       tooltip: 'Upload To Server',
@@ -46,6 +95,8 @@ class _RegisterState extends State<Register> {
         padding: EdgeInsets.all(30.0),
         children: <Widget>[
           nameForm(),
+          userForm(),
+          password(),
         ],
       ),
       appBar: AppBar(
