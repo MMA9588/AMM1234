@@ -1,4 +1,5 @@
 import 'package:aproduct/utility/my_style.dart';
+import 'package:aproduct/utility/normal_dialog.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -9,11 +10,16 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
 // Field
 
+  String name, user, password, rePassword;
+
 // Method
 
   Widget nameForm() {
     Color color = Colors.purple;
     return TextField(
+      onChanged: (String string) {
+        name = string.trim();
+      },
       decoration: InputDecoration(
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: color),
@@ -30,21 +36,23 @@ class _RegisterState extends State<Register> {
       ),
     );
   }
-  
 
 // Username
 
-    Widget userForm() {
+  Widget userForm() {
     Color color = Colors.green;
     Color coloruser = Colors.orange;
     return TextField(
+      onChanged: (String string) {
+        user = string.trim();
+      },
       decoration: InputDecoration(
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: color),
         ),
-        helperStyle: TextStyle(color: color),
+        helperStyle: TextStyle(color: coloruser),
         helperText: 'Type Your Username in Blank',
-        labelStyle: TextStyle(color: color),
+        labelStyle: TextStyle(color: coloruser),
         labelText: 'Username:',
         icon: Icon(
           Icons.supervised_user_circle,
@@ -57,10 +65,12 @@ class _RegisterState extends State<Register> {
 
 // Password
 
-
-   Widget password() {
+  Widget passwordForm() {
     Color color = Colors.green;
-    return TextField(
+    return TextField(obscureText: true,
+      onChanged: (String string) {
+        password = string.trim();
+      },
       decoration: InputDecoration(
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: color),
@@ -78,13 +88,54 @@ class _RegisterState extends State<Register> {
       // obscureText: true,
     );
   }
-  
-  
+
+  Widget rePasswordForm() {
+    Color color = Colors.green;
+    return TextField(obscureText: true,
+      onChanged: (String string) {
+        rePassword = string.trim();
+      },
+      decoration: InputDecoration(
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: color),
+        ),
+        helperStyle: TextStyle(color: color),
+        helperText: 'Type Your Password in Blank Again',
+        labelStyle: TextStyle(color: color),
+        labelText: 'Re-Password:',
+        icon: Icon(
+          Icons.vpn_key,
+          size: 36.0,
+          color: color,
+        ),
+      ),
+      // obscureText: true,
+    );
+  }
+
   Widget registerButton() {
     return IconButton(
       tooltip: 'Upload To Server',
       icon: Icon(Icons.cloud_upload),
-      onPressed: () {},
+      onPressed: () {
+        print(
+            'name = $name, user = $user, password = $password, rePassword = $rePassword');
+
+        if (name == null ||
+            name.isEmpty ||
+            user == null ||
+            user.isEmpty ||
+            password == null ||
+            password.isEmpty ||
+            rePassword == null ||
+            rePassword.isEmpty) {
+          normalDialog(context, 'Have Space', 'Please Fill Every Blank');
+        } else if (password == rePassword) {
+          
+        } else {
+          normalDialog(context, 'Password Not Math', 'Plaese Type Password Math Re-Password');
+        }
+      },
     );
   }
 
@@ -96,7 +147,8 @@ class _RegisterState extends State<Register> {
         children: <Widget>[
           nameForm(),
           userForm(),
-          password(),
+          passwordForm(),
+          rePasswordForm(),
         ],
       ),
       appBar: AppBar(
