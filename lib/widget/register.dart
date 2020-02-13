@@ -143,8 +143,13 @@ class _RegisterState extends State<Register> {
   }
 
   Future<void> registerThread() async {
+    String url =
+        'https://www.androidthai.in.th/feb13/addUserA.php?isAdd=true&Name=$name&User=$user&Password=$password';
 
-String url = 'https://www.androidthai.in.th/feb13/addUserA.php?isAdd=true&Name=$name&User=$user&Password=$password';
+  try {
+    
+  } catch (e) {
+  }
 
   }
 
