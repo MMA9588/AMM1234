@@ -67,7 +67,8 @@ class _RegisterState extends State<Register> {
 
   Widget passwordForm() {
     Color color = Colors.green;
-    return TextField(obscureText: true,
+    return TextField(
+      obscureText: true,
       onChanged: (String string) {
         password = string.trim();
       },
@@ -91,7 +92,8 @@ class _RegisterState extends State<Register> {
 
   Widget rePasswordForm() {
     Color color = Colors.green;
-    return TextField(obscureText: true,
+    return TextField(
+      obscureText: true,
       onChanged: (String string) {
         rePassword = string.trim();
       },
@@ -131,12 +133,19 @@ class _RegisterState extends State<Register> {
             rePassword.isEmpty) {
           normalDialog(context, 'Have Space', 'Please Fill Every Blank');
         } else if (password == rePassword) {
-          
+          registerThread();
         } else {
-          normalDialog(context, 'Password Not Math', 'Plaese Type Password Math Re-Password');
+          normalDialog(context, 'Password Not Math',
+              'Plaese Type Password Math Re-Password');
         }
       },
     );
+  }
+
+  Future<void> registerThread() async {
+
+String url = 'https://www.androidthai.in.th/feb13/addUserA.php?isAdd=true&Name=$name&User=$user&Password=$password';
+
   }
 
   @override
